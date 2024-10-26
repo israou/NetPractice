@@ -1,69 +1,52 @@
-->>>Net_Practice nous inite aux bases de la mise en réseau, en nous faisant configurer les réseaux simples et comprendre le fonctionnement du protocole TCP/IP<<<-
+Introduction au Réseau
+Net_Practice nous initie aux bases de la mise en réseau, en nous faisant configurer les réseaux simples et comprendre le fonctionnement du protocole TCP/IP.
 
+Qu’est-ce qu’un Réseau Informatique ?
+Le réseau informatique désigne les appareils interconnectés qui peuvent échanger des données et partager des ressources. Ces appareils en réseau utilisent un système de règles, appelées protocoles de communication, pour transmettre des informations via des technologies physiques ou sans fil. En bref, le réseau est un ensemble de machines reliées entre elles. Tous ces éléments ont un point en commun : pour communiquer, ils doivent avoir une adresse IP !
 
-  Avant de plonger dans le monde du reseautique qu'est ce qu'un réseau ?
-  
-  
-  ----> Le réseau informatique désigne les appareils informatiques interconnectês qui peuvent échanger des données et partager des ressources entre eux,
-         ces appareils en reseau utilisent un systeme de regles appelés protocole de communication pour transmettre des informations sur des technologies physiques ou sans fil.
-         en gros le reseau est un ensemble de machine reliées ensembles, tous ces eements ont un point en commun : pour communiquer il faut qu'elles ayent une adresse ip !!!
-   ----> LES COMPOSANTS D'UN RÉSEAU :
-         * HÔTE : ce sont les appareils connectés au reseau (ordinateurs, téléphone, serveurs,imprimantes...)
-         * MÉDIUM TRANSMISSION : Les reseaux utilisent les cables (comme les cables ethernet) ou des technologies sans fil comme le wi-fi pour permettre aux hôtes de communiquer.
-           -les cables ethernet sont des cables reseau utilisées pour connecter des appareils au sein d'un reseau filaire (filaire veut dire réseaux informatique ou les appareils sont connectés physiaquement entre eux à l'aide de cables)
-         * ROUTEURS ET SWITCH : 
-           -> SWITCH : un appareil qui connecte plusieurs hotes dans un réseau local (LAN : local area network), leurs permettant d'echanger les données.
-           -> ROUTEUR : un appareil qui connecte plusieurs réseaux entre eux, souvent utilisé pour relier un reseau local a internet.
-  -----> LES TYPES DE RÉSEAUX :
-        * LAN : Local Area Network : un réseau local couvrant une zone restreinte, comme une maison, un bureau, ou une école, les ordinnateurs sont directement interconnectés via des cables ou des technologies sans fil.
-        * WAN : Wide Area Network : un réseau étendu couvrant une grnde zone géographique comme internet qui est un WAN global.
-        * PAN : Personnal Area Network ; un réseau personnel autour d'une seule personne , comme la connexion entre un smartphone et un ordinateur via blueutooth.
-        * MAN ; Metropolitan Area Network : un réseau qui couvre une ville ou une grnde zone urbaine.
-  -----> LES BASES DU RÉSEAU ET DES ADRESSES IP :
-        ADRESSE IP : chaque dispositif dans un réseau a une adresse ip (Internet Protocol) unique qui permet de l'identifier.
-                     Une adresse ip peut etre publique et donc visible sur internet, ou privée et donc utilisée a l'interieur d'un réseau  local.
-                     en gros l'adresse ip identifie de manière unique un dispositif sur un réseau TCP/IP
-                     elle fonctionne comme une adresse postale qui permet de savoir où envoyer les informations
-                     TCP/IP : C'est le protocole qui régit la communication entre appareils. Il spécifie comment les données doivent être découpées, transmises et rassemblées pour atteindre leur destination correctement.
-                     il existe deux versions d'adresses ip
-                     IPV4 : formée de 32 bits, divisée en 4 octets (4 nombres entre 0 à 255). exemple : 192.168.12.1 elle offre environ 4,3 milliards d'adresses uniques
-                     IPV6 : formée de 128 bits, représentée par huit groupes de 4 chiffres héxadécimaux, séparés par deux points. exemple 2001:0db8:85a3:0000:0000:8a2e:0370:7334
-                     elle permet un nombre quasi illimité d'adresses uniques en réponse à l'epuisement des adresses ipv4
-                              **Adresse publique et adresse privée**
-                     -->Une adresse IP publique est une adresse IP accessible directement via Internet et attribuée à votre routeur réseau par votre fournisseur d'accès Internet (FAI).
-                     Une adresse IP publique (ou externe) vous permet de vous connecter à Internet depuis l'intérieur de votre réseau vers l'extérieur de celui-ci.
-                     -->Une adresse IP privée est une adresse que votre routeur réseau attribue à votre appareil.
-                     Chaque appareil au sein d'un même réseau se voit attribuer une adresse IP privée unique (parfois appelée adresse réseau privée)
-                     c'est ainsi que les appareils d'un même réseau interne communiquent entre eux.
-                     Lorsqu'un réseau est connecté à Internet, il ne peut pas utiliser une adresse IP provenant des adresses IP privées réservées.
-                     Les plages suivantes sont réservées aux adresses IP privées :
-                           192.168.0.0 – 192.168.255.255 (65,536 IP addresses)
-                            172.16.0.0 – 172.31.255.255   (1,048,576 IP addresses)
-                            10.0.0.0 – 10.255.255.255     (16,777,216 IP addresses)
-      NB : CHAQUE DISPOSITIF CONNECTÊ A UN RESEAU POSSEDE UNE ADRESSE IP SOIT PUBLIQUE POUR ETRE VISIBLE SUR INTERNET, SOIT PRIVÉE POUR UNE UTILISATION LOCALE DANS UN RÉSEAU INTERNE (192.168.0.X) -> RESEAU DOMESTIQUE
------> LES MASQUES DE SOUS-RÉSEAUX ET LES SOUS-RÉSEAUX :
-      L'adresse ip est divisée en deux parties
-        une partie identifie le reseau
-        une partie identifie l'hote sur ce reseau
-      Le masque de sous-reseau aide a determiner quelle partie de l'adresse ip est reservée au réseau et laquelle est dédiée aux hotes 
-      exemple : dans le réseau 192.168.1.0/24  
-                le masque de sous-réseau est 255.255.255.0
-                cela indique que les 24 premiers bits identifient le réseau et les 8 derniers bits sont réservées pour les hotes
-                255.255.255.0 en binaire donne : 11111111.11111111.11111111.00000000
-  Il faut savoir que tout inclut une adresse ip est tout inclut un sous-masque ! 
-  le routeur donne aux dispositifs les adresses ip , cette magie mysterieuse est connue sous DHCP 
-  QU'EST CE QUE LE DHCP ??????
-  ----->   DHCP (Dynamic Host Configuration Protocol) est un protocol qui permet d'attribuer q=automatiquement des adresses ip aux autres appareils
-  (1) : Quand je me connecte a1 un reseau mon appareil envoie une demande au seveur DHCP du réseau, cette demande dit: "JE VIENS DE ME CONNECTER , J'AI BESOIN D'UNE ADRESSE IP"
-  (2) : Le serveur DHCP (routeur) recoit la demande et choisit une adresse ip libre pour mon appareil
-  (3) : Le serveur DHCP envoie une répopnse à mon appareil avec l'adresse ip qu'il doit utiliser ainsi que d'autres informations nécessaires
-  (4) Mon appareil utilise l'adresse ip recue et il est maintenant pret a communiquer sur le reseau.
-  Il existe deux adresses ip que je peux jamais utiliser , elles sont intouchables !!!!!!!!! 
-  X.X.X.0 c'est le 1er né : adresse réseau
-  X.X.X.255 la derniere adresse ip : adresse de diffusion BROADCAST --> il le diffusera a tout le monde :(
-  Dans l'espace d'adressage IPV4 il existe 5 classes A B C D E , chaque classe possede une plage spécifiques d'adresses ip et determine le nombre d'appareil que vous pouvez avoir sur votre réseau
-  les classes A B C sont principalemet utilisées par la majorité des appareils sur Internet 
-  les classes D et E sont destinées a des utilisations speciales
-  
-                                                                                              
-jusqu'ici tout va bien !
+Composants d’un Réseau
+Hôte : Appareils connectés au réseau (ordinateurs, téléphones, serveurs, imprimantes…).
+Médium de Transmission : Les réseaux utilisent des câbles (comme les câbles Ethernet) ou des technologies sans fil (Wi-Fi) pour permettre aux hôtes de communiquer.
+Câbles Ethernet : Câbles réseau utilisés pour connecter des appareils dans un réseau câblé (les appareils sont connectés physiquement).
+Routeurs et Switchs :
+Switch : Appareil qui connecte plusieurs hôtes dans un réseau local (LAN) pour échanger des données.
+Routeur : Appareil qui connecte plusieurs réseaux, souvent pour relier un réseau local à Internet.
+Types de Réseaux
+LAN (Local Area Network) : Réseau local couvrant une zone restreinte, comme une maison, un bureau ou une école. Les ordinateurs sont directement interconnectés via des câbles ou des technologies sans fil.
+WAN (Wide Area Network) : Réseau étendu couvrant une grande zone géographique, comme Internet qui est un WAN global.
+PAN (Personal Area Network) : Réseau personnel autour d'une seule personne, comme la connexion entre un smartphone et un ordinateur via Bluetooth.
+MAN (Metropolitan Area Network) : Réseau qui couvre une ville ou une grande zone urbaine.
+Les Bases du Réseau et des Adresses IP
+Adresse IP : Chaque dispositif dans un réseau a une adresse IP unique qui permet de l'identifier. Une adresse IP peut être publique (visible sur Internet) ou privée (utilisée à l’intérieur d’un réseau local). En résumé, l'adresse IP identifie un dispositif sur un réseau TCP/IP, un peu comme une adresse postale qui permet de savoir où envoyer les informations.
+Protocoles TCP/IP
+Le TCP/IP est le protocole qui régit la communication entre appareils. Il spécifie comment les données doivent être découpées, transmises et rassemblées pour atteindre leur destination correctement.
+
+Versions d’Adresses IP
+IPv4 : Formée de 32 bits, divisée en 4 octets (chacun entre 0 et 255). Exemple : 192.168.12.1. Elle offre environ 4,3 milliards d’adresses uniques.
+IPv6 : Formée de 128 bits, représentée par huit groupes de quatre chiffres hexadécimaux, séparés par des deux-points. Exemple : 2001:0db8:85a3:0000:0000:8a2e:0370:7334. Elle permet un nombre quasi illimité d’adresses en réponse à l'épuisement des adresses IPv4.
+Adresses Publiques et Privées
+Adresse IP publique : Accessible directement via Internet et attribuée à votre routeur par votre fournisseur d'accès Internet (FAI). Elle permet de se connecter à Internet depuis l’intérieur vers l’extérieur.
+Adresse IP privée : Attribuée à chaque appareil dans un réseau interne. C'est ainsi que les appareils d'un même réseau communiquent entre eux. Lorsqu'un réseau est connecté à Internet, il ne peut pas utiliser d'adresses IP privées.
+Plages d'Adresses IP Privées
+Les plages suivantes sont réservées aux adresses IP privées :
+
+192.168.0.0 – 192.168.255.255
+172.16.0.0 – 172.31.255.255
+10.0.0.0 – 10.255.255.255
+NB : Chaque dispositif connecté à un réseau possède une adresse IP publique (pour être visible sur Internet) ou une adresse privée pour une utilisation locale dans un réseau interne.
+
+Les Masques de Sous-Réseau et Sous-Réseaux
+L'adresse IP est divisée en deux parties : une partie identifie le réseau et une autre l'hôte dans ce réseau. Le masque de sous-réseau aide à déterminer quelle partie de l'adresse IP est réservée au réseau et laquelle est dédiée aux hôtes. Par exemple, dans le réseau 192.168.1.0/24, le masque 255.255.255.0 indique que les 24 premiers bits identifient le réseau et les 8 derniers sont réservés pour les hôtes.
+
+DHCP : Protocole de Configuration Dynamique des Hôtes
+Le DHCP (Dynamic Host Configuration Protocol) permet d'attribuer automatiquement des adresses IP :
+
+Quand un appareil se connecte à un réseau, il envoie une demande au serveur DHCP en disant : "Je viens de me connecter, j'ai besoin d'une adresse IP."
+Le serveur DHCP (souvent le routeur) reçoit la demande et choisit une adresse IP libre pour l’appareil.
+Le serveur DHCP répond avec l'adresse IP à utiliser ainsi que d'autres informations nécessaires.
+L’appareil utilise l'adresse IP reçue et est prêt à communiquer sur le réseau.
+Adresses Réservées
+X.X.X.0 : Adresse de réseau.
+X.X.X.255 : Adresse de diffusion (Broadcast), utilisée pour envoyer des données à tous les appareils du réseau.
+Classes d'Adresses IP
+Dans l'espace d'adressage IPv4, il existe 5 classes d'adresses IP : A, B, C, D, E. Les classes A, B et C sont principalement utilisées par la majorité des appareils sur Internet, tandis que les classes D et E sont destinées à des usages spéciaux.
