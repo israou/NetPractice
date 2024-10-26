@@ -50,3 +50,103 @@ X.X.X.0 : Adresse de réseau.
 X.X.X.255 : Adresse de diffusion (Broadcast), utilisée pour envoyer des données à tous les appareils du réseau.
 Classes d'Adresses IP
 Dans l'espace d'adressage IPv4, il existe 5 classes d'adresses IP : A, B, C, D, E. Les classes A, B et C sont principalement utilisées par la majorité des appareils sur Internet, tandis que les classes D et E sont destinées à des usages spéciaux.
+
+
+
+Protocoles Réseau
+Un protocole est un ensemble de règles que les dispositifs d'un réseau utilisent pour communiquer entre eux. Les plus importants pour toi à ce stade sont :
+* TCP/IP (Transmission Control Protocol/Internet Protocol) : Le protocole standard pour la communication sur Internet. Il garantit la livraison fiable des données (TCP) et permet de les acheminer vers la bonne destination (IP).
+* UDP (User Datagram Protocol) : Un protocole sans connexion donc plus rapide que TCP, mais moins fiable car il ne garantit pas que les données arrivent à destination.
+Qu’est-ce que TCP (protocole de contrôle de transmissions) ?
+Le protocole de contrôle de transmissions (TCP, Transmission Control Protocol) est l’un des principaux moyens de transmission des données entre les réseaux sur Internet. Il s’agit d’un protocole de communication orienté connexion qui permet aux appareils et applications informatiques d’envoyer des données et d’en vérifier la livraison. Avec le protocole de datagramme utilisateur (UDP, User Datagram Protocol), TCP constitue la base du transfert de données à l’échelle mondiale.
+Qu’est-ce qu’UDP (protocole de datagramme utilisateur) ?
+UDP (protocole de datagramme utilisateur) est l’un des protocoles qui permet le transfert de données entre les réseaux sur Internet. Il s’agit d’un protocole de communication orienté message qui permet aux appareils et applications informatiques d’envoyer des données, sans en vérifier la livraison. UDP est le mieux adapté à la communication en temps réel et aux systèmes de diffusion.
+
+
+Quelles sont les trois différences entre TCP et UDP ?
+1. TCP exige une connexion fiable entre le serveur et le destinataire, ce qui peut ralentir le transfert de données. UDP est un protocole sans connexion, donc beaucoup plus rapide. 
+2. TCP garantit une transmission sans faille des données, même si les paquets perdus ou endommagés sont retransmis. UDP est un protocole « tire et oublie » qui ne vérifie pas les erreurs et ne renvoie pas les paquets de données perdus. 
+3. UDP est plus adapté à la diffusion et au streaming en direct. TCP est préférable pour les communications directes (e-mails, navigation Web ou transfert de fichiers). 
+À quoi servent les protocoles TCP et UDP ?
+TCP est de préférence utilisé pour les communications directes nécessitant une connexion fiable (navigation Web, e-mails, SMS et transfert de fichiers). UDP sert de préférence pour la transmission de données en direct et en temps réel, lorsque la vitesse est plus importante que la fiabilité. UDP est normalement utilisé pour les jeux en ligne, le streaming en direct et les protocoles DNS.
+Les ports TCP sont-ils différents des ports UDP ?
+Oui, les ports TCP et UDP sont différents, mais ils utilisent parfois le même numéro de port. Par exemple, UDP/53 et TCP/53 sont tous deux utilisés pour le DNS, mais il s’agit de types de connexion différents. Les ports TCP sont conformes aux protocoles de contrôle de transmissions, tandis que les ports UDP sont conformes aux protocoles de datagramme utilisateur.
+
+Les 4 couches du modèle TCP/IP
+Le modèle TCP/IP est composé de 4 couches principales :
+
+Couche d'Application (Application Layer)
+Cette couche est la plus proche de l'utilisateur. Elle contient les protocoles qui permettent aux applications de communiquer entre elles. Les principaux protocoles de cette couche incluent :
+
+HTTP (Hypertext Transfer Protocol) pour le web
+FTP (File Transfer Protocol) pour le transfert de fichiers
+SMTP (Simple Mail Transfer Protocol) pour l'e-mail
+DNS (Domain Name System) pour la résolution de noms de domaines
+Couche de Transport (Transport Layer)
+Cette couche fournit un service de communication fiable entre processus sur différents hôtes. Elle gère la segmentation/déssegmentation des données et l'assurance de la livraison. Les principaux protocoles de cette couche sont :
+
+TCP (Transmission Control Protocol) pour une communication fiable
+UDP (User Datagram Protocol) pour une communication non fiable
+Couche Internet (Network Layer)
+Cette couche est responsable de la routage des paquets entre les réseaux. Elle gère l'adressesage des paquets et leur routage. Le principal protocole de cette couche est IP (Internet Protocol).
+
+Couche d'Accès Réseau (Network Access Layer)
+Cette couche gère la transmission de données entre les appareils sur le même réseau. Elle définit les protocoles physiques et de liaison de données. Les principaux protocoles de cette couche incluent Ethernet et Wi-Fi.
+
+Fonctionnement du modèle TCP/IP
+Quand on envoie des données via internet, elles passent par ces 4 couches dans un certain ordre, puis dans l'ordre inverse lorsqu'elles sont reçues. Voici les étapes principales :
+
+Les données sont encapsulées dans des segments à la couche de transport
+Ces segments sont encapsulés dans des paquets à la couche internet
+Les paquets sont encapsulés dans des frames à la couche d'accès réseau
+Les frames sont transmises physiquement sur le réseau
+Lorsqu'ils arrivent à destination, le processus se répète dans l'ordre inverse.
+
+Avantages du modèle TCP/IP
+Le modèle TCP/IP présente plusieurs avantages :
+Interopérabilité : permet une communication entre différents systèmes et réseaux
+Échelle : conçu pour fonctionner avec un grand nombre de réseaux et appareils
+Standardisation : fournit un cadre standardisé pour les communications réseau
+Flexibilité : permet d'ajouter facilement de nouveaux protocoles
+Fiabilité : offre des mécanismes pour assurer la livraison des données
+En résumé, le modèle TCP/IP est le fondement technique de l'internet moderne, offrant une architecture robuste et flexible pour les communications réseau.
+
+Le Handshake TCP/IP
+Le handshake TCP/IP est un processus essentiel pour établir une connexion fiable entre deux dispositifs sur un réseau TCP/IP. Il s'agit d'une série de trois échanges de paquets entre le client et le serveur afin de s'assurer qu'ils sont prêts à communiquer entre eux.
+Étapes du Handshake TCP/IP
+Étape 1 : SYN
+Le client envoie un paquet SYN au serveur.
+Ce paquet contient :
+Un numéro de séquence initial aléatoire
+L'indicateur SYN mis à 1
+La fenêtre de réception
+Étape 2 : SYN-ACK
+Le serveur reçoit le paquet SYN.
+En réponse, il envoie un paquet SYN-ACK au client.
+Ce paquet contient :
+L'indicateur SYN mis à 1
+L'indicateur ACK mis à 1
+Le numéro de séquence initial du serveur
+La fenêtre de réception du serveur
+Étape 3 : ACK
+Le client reçoit le paquet SYN-ACK.
+Il répond alors avec un paquet ACK.
+Ce paquet confirme que la connexion a bien été établie.
+Importance du Handshake TCP/IP
+Synchronisation des numéros de séquence : Permet de s'assurer que les deux parties utilisent les mêmes numéros de séquence pour la communication.
+Vérification de la connexion : Assure que les deux parties sont prêtes à communiquer et que tous les paramètres nécessaires sont correctement configurés.
+Prévention des attaques : Le handshake aide à prévenir les attaques comme le "SYN Flood" en limitant le nombre de connexions malveillantes.
+Reliabilité : Établit une connexion fiable entre le client et le serveur avant de commencer à échanger des données.
+Paramètres de la connexion : Permet d'échanger des informations importantes comme les fenêtres de réception et de transmission.
+Conclusion
+Le handshake TCP/IP est un élément crucial du protocole TCP, garantissant ainsi une communication sécurisée et fiable entre les appareils sur un réseau TCP/IP. Il joue un rôle vital dans l'établissement de la connexion avant que les données ne commencent à être échangées.
+Le protocole TCP (Transmission Control Protocol) établit une connexion fiable en plusieurs étapes pour assurer la transmission des données. D'abord, il y a le handshake en trois étapes :
+L’ordinateur A envoie un message SYN (synchronize) à l’ordinateur B pour indiquer le début de la connexion.
+L’ordinateur B répond avec un message SYN-ACK (synchronize-acknowledge) pour confirmer qu'il est prêt à recevoir les données.
+L’ordinateur A termine le handshake en envoyant un message ACK (acknowledge) pour valider la connexion.
+Une fois le handshake terminé, les données sont envoyées entre les deux ordinateurs de manière ordonnée et fiable.
+
+LE ROUTAGE 
+Le routage est le processus par lequel un routeur achemine les données d’un réseau à un autre, jusqu’à leur destination. Le routeur détermine le meilleur chemin en analysant les adresses IP des paquets de données.
+NAT (Network Address Translation) intervient lorsqu'un réseau privé veut accéder à Internet. Le routeur utilise le NAT pour remplacer l'adresse IP privée de chaque appareil par une adresse IP publique unique. Cela permet aux appareils du réseau local de partager une seule IP publique pour communiquer avec l'extérieur, tout en restant protégés.
+En résumé, le routeur gère le routage pour guider les paquets et utilise le NAT pour connecter des adresses privées à Internet en toute sécurité.
