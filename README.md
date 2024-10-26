@@ -150,3 +150,9 @@ LE ROUTAGE
 Le routage est le processus par lequel un routeur achemine les données d’un réseau à un autre, jusqu’à leur destination. Le routeur détermine le meilleur chemin en analysant les adresses IP des paquets de données.
 NAT (Network Address Translation) intervient lorsqu'un réseau privé veut accéder à Internet. Le routeur utilise le NAT pour remplacer l'adresse IP privée de chaque appareil par une adresse IP publique unique. Cela permet aux appareils du réseau local de partager une seule IP publique pour communiquer avec l'extérieur, tout en restant protégés.
 En résumé, le routeur gère le routage pour guider les paquets et utilise le NAT pour connecter des adresses privées à Internet en toute sécurité.
+
+Table de routage
+Une table de routage est une table de données stockée dans un routeur ou un hôte réseau qui répertorie les routes vers des destinations réseau particulières. Dans NetPractice, la table de routage se compose de 2 éléments :
+Destination : La destination spécifie une adresse réseau où un hôte est la cible finale des paquets. La route par défaut, ou 0.0.0.0/0, est utilisée quand aucune autre route n'est disponible pour une adresse IP de destination. Cette route par défaut utilisera l'adresse du prochain saut pour envoyer les paquets sans indiquer de destination spécifique. Elle correspondra à n'importe quel réseau.
+
+next hop : Le prochain saut fait référence au routeur le plus proche par lequel un paquet peut passer. C'est l'adresse IP du routeur suivant sur le trajet du paquet. Chaque routeur maintient sa propre table de routage avec une adresse de prochain saut.
