@@ -1,3 +1,362 @@
+# NetPractice – 42 School Project
+
+**NetPractice** is a networking fundamentals project from 42 School. The goal is to understand and configure small-scale networks by solving 10 progressive levels of networking challenges. This project teaches **IP addressing**, **subnetting**, **routing**, and **network troubleshooting** without any coding.
+
+This is a **practical exercise** where you learn by doing. The more you practice and understand the concepts, the easier the levels become.
+
+## 📌 Project Overview
+
+NetPractice consists of 10 levels of increasing difficulty where you must configure IP addresses, subnet masks, and routes to make networks function correctly. Each level tests your understanding of different networking concepts.
+
+**Important:** This project is about **understanding**, not memorizing. Take time to learn the concepts rather than copying solutions.
+
+## 🎯 Learning Objectives
+
+By completing this project, you will understand:
+* **IP Addressing** – How IPv4 addresses work
+* **Subnet Masks** – How to divide networks into subnets
+* **CIDR Notation** – Compact IP address representation
+* **Network vs Host Bits** – Understanding address ranges
+* **Routing** – How packets travel between networks
+* **Network Troubleshooting** – Identifying and fixing configuration issues
+
+## 📚 Core Concepts Explained
+
+### 1. IP Addresses (IPv4)
+
+An **IP address** is a unique identifier for a device on a network.
+
+**Format:** `X.X.X.X` where X is a number between 0-255
+
+**Example:** `192.168.1.10`
+
+Each IP address consists of:
+* **Network portion** – Identifies the network
+* **Host portion** – Identifies the device on that network
+
+### 2. Subnet Masks
+
+A **subnet mask** determines which part of an IP address is the network and which part is the host.
+
+**Common Subnet Masks:**
+
+| CIDR | Subnet Mask | Binary | Hosts | Use Case |
+|------|-------------|--------|-------|----------|
+| /32 | 255.255.255.255 | 11111111.11111111.11111111.11111111 | 1 | Single host |
+| /30 | 255.255.255.252 | 11111111.11111111.11111111.11111100 | 2 | Point-to-point links |
+| /29 | 255.255.255.248 | 11111111.11111111.11111111.11111000 | 6 | Small networks |
+| /28 | 255.255.255.240 | 11111111.11111111.11111111.11110000 | 14 | Small LANs |
+| /27 | 255.255.255.224 | 11111111.11111111.11111111.11100000 | 30 | Medium LANs |
+| /26 | 255.255.255.192 | 11111111.11111111.11111111.11000000 | 62 | Larger LANs |
+| /25 | 255.255.255.128 | 11111111.11111111.11111111.10000000 | 126 | Large LANs |
+| /24 | 255.255.255.0 | 11111111.11111111.11111111.00000000 | 254 | Standard LAN |
+| /16 | 255.255.0.0 | 11111111.11111111.00000000.00000000 | 65,534 | Large networks |
+| /8 | 255.0.0.0 | 11111111.00000000.00000000.00000000 | 16,777,214 | Huge networks |
+
+### 3. CIDR Notation
+
+**CIDR (Classless Inter-Domain Routing)** is a compact way to represent subnet masks.
+
+**Format:** `IP_ADDRESS/PREFIX_LENGTH`
+
+**Examples:**
+* `192.168.1.0/24` = Network with 254 usable hosts
+* `10.0.0.0/8` = Network with 16,777,214 usable hosts
+* `172.16.0.0/30` = Network with 2 usable hosts
+
+### 4. Calculating Subnets
+
+**Step-by-step example:**
+
+Given: `192.168.1.0/26`
+
+1. **Subnet mask:** `/26` = `255.255.255.192`
+
+2. **Binary representation:**
+```
+   11111111.11111111.11111111.11000000
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  Network bits (26)
+                                 ^^  Host bits (6)
+```
+
+3. **Number of hosts:** 2^6 - 2 = 64 - 2 = **62 usable hosts**
+   * Subtract 2 for network address and broadcast address
+
+4. **Network address:** `192.168.1.0` (first address)
+
+5. **Broadcast address:** `192.168.1.63` (last address)
+
+6. **Usable host range:** `192.168.1.1` to `192.168.1.62`
+
+### 5. Private IP Ranges
+
+These IP ranges are reserved for private networks (RFC 1918):
+
+* **Class A:** `10.0.0.0` to `10.255.255.255` (`10.0.0.0/8`)
+* **Class B:** `172.16.0.0` to `172.31.255.255` (`172.16.0.0/12`)
+* **Class C:** `192.168.0.0` to `192.168.255.255` (`192.168.0.0/16`)
+
+### 6. Special IP Addresses
+
+* **Network Address:** First address in subnet (all host bits = 0)
+  * Example: `192.168.1.0/24` → Network is `192.168.1.0`
+
+* **Broadcast Address:** Last address in subnet (all host bits = 1)
+  * Example: `192.168.1.0/24` → Broadcast is `192.168.1.255`
+
+* **Loopback:** `127.0.0.1` – Points to the local machine
+
+* **Default Route:** `0.0.0.0/0` – Matches any destination
+
+### 7. Routing
+
+**Routing** determines how packets travel between different networks.
+
+**Route Table Components:**
+* **Destination:** Target network address
+* **Next hop:** Router's IP address to forward packets to
+* **Default route:** `0.0.0.0/0` catches all unmatched traffic
+
+**Example:**
+```
+Destination      Next Hop
+10.0.0.0/24      Direct (local network)
+20.0.0.0/24      10.0.0.254 (router)
+0.0.0.0/0        10.0.0.1 (default gateway)
+```
+
+## 🛠️ How to Approach NetPractice
+
+### Step-by-Step Strategy
+
+1. **Start with Level 1**
+   * Don't skip ahead
+   * Each level builds on previous knowledge
+
+2. **Understand Before Filling**
+   * Read what each level is asking
+   * Identify which devices can't communicate
+   * Determine why they can't communicate
+
+3. **Check for Common Issues:**
+   * ✅ Are IP addresses in the same subnet?
+   * ✅ Are subnet masks compatible?
+   * ✅ Is there a route to the destination?
+   * ✅ Are IP addresses unique (no duplicates)?
+   * ✅ Are network/broadcast addresses avoided?
+
+4. **Use Logical Thinking**
+   * If two devices need to communicate directly, they must be on the same network
+   * If devices are on different networks, they need a router with proper routing
+
+5. **Verify Your Configuration**
+   * Use the "Check again" button
+   * Read error messages carefully
+   * Understand WHY it's wrong, not just WHAT is wrong
+
+### Common Mistakes to Avoid
+
+❌ **Using network addresses as host IPs**
+```
+Bad:  192.168.1.0/24 (this is the network address)
+Good: 192.168.1.1/24
+```
+
+❌ **Using broadcast addresses as host IPs**
+```
+Bad:  192.168.1.255/24 (this is the broadcast address)
+Good: 192.168.1.254/24
+```
+
+❌ **Incompatible subnet masks**
+```
+Bad:  Host A: 192.168.1.10/24
+      Host B: 192.168.1.20/25
+Good: Host A: 192.168.1.10/24
+      Host B: 192.168.1.20/24
+```
+
+❌ **Duplicate IP addresses**
+```
+Bad:  Host A: 192.168.1.10/24
+      Host B: 192.168.1.10/24
+Good: Host A: 192.168.1.10/24
+      Host B: 192.168.1.11/24
+```
+
+❌ **Missing or incorrect routes**
+```
+Bad:  No default route configured
+Good: Default route: 0.0.0.0/0 → gateway
+```
+
+## 💡 Practical Tips
+
+### Quick Subnet Calculation
+
+**Formula:** Number of hosts = 2^(32 - prefix) - 2
+
+* `/30` → 2^(32-30) - 2 = 4 - 2 = **2 hosts**
+* `/29` → 2^(32-29) - 2 = 8 - 2 = **6 hosts**
+* `/28` → 2^(32-28) - 2 = 16 - 2 = **14 hosts**
+* `/27` → 2^(32-27) - 2 = 32 - 2 = **30 hosts**
+* `/26` → 2^(32-26) - 2 = 64 - 2 = **62 hosts**
+* `/25` → 2^(32-25) - 2 = 128 - 2 = **126 hosts**
+* `/24` → 2^(32-24) - 2 = 256 - 2 = **254 hosts**
+
+### Determining if IPs are in Same Subnet
+
+**Method:** Perform bitwise AND of IP address and subnet mask
+
+**Example:** Are `192.168.1.10` and `192.168.1.50` in the same `/26` subnet?
+```
+IP 1:     192.168.1.10  = 11000000.10101000.00000001.00001010
+IP 2:     192.168.1.50  = 11000000.10101000.00000001.00110010
+Mask /26: 255.255.255.192 = 11111111.11111111.11111111.11000000
+
+Network 1: 192.168.1.0   = 11000000.10101000.00000001.00000000
+Network 2: 192.168.1.0   = 11000000.10101000.00000001.00000000
+
+Result: YES, they are in the same subnet (192.168.1.0/26)
+```
+
+### Online Tools (for learning, not cheating!)
+
+Use these to **understand concepts**, not to get answers:
+
+* **Subnet Calculator:** [subnet-calculator.com](https://www.subnet-calculator.com/)
+* **IP Address Guide:** [ipcalc.org](http://jodies.de/ipcalc)
+* **Visual Subnet:** [visualsubnetcalc.com](https://www.visualsubnetcalc.com/)
+
+**Use these tools to:**
+* Verify your manual calculations
+* Understand WHY an answer is correct
+* Learn subnet patterns
+
+**Don't use them to:**
+* Find answers without understanding
+* Copy-paste solutions
+
+## 🎓 Level Progression Guide
+
+### Levels 1-3: Basics
+* Focus on: IP addresses and simple subnetting
+* Skills: Understanding /24, /25, /26 networks
+* Concepts: Same network communication
+
+### Levels 4-6: Intermediate
+* Focus on: Routing between networks
+* Skills: Configuring routes and gateways
+* Concepts: Multi-network topology
+
+### Levels 7-8: Advanced
+* Focus on: Complex routing with multiple routers
+* Skills: Route tables and next hops
+* Concepts: Path selection
+
+### Levels 9-10: Expert
+* Focus on: Everything combined
+* Skills: Full network configuration
+* Concepts: Troubleshooting complex topologies
+
+## ⚠️ Important Notes
+
+### Why You Shouldn't Cheat
+
+1. **You're Learning for Yourself**
+   * Networking is fundamental to many tech jobs
+   * Understanding networks helps in system administration, DevOps, security, etc.
+   * These concepts appear in job interviews
+
+2. **It Gets Easier with Practice**
+   * First levels might seem hard
+   * Once concepts click, later levels become straightforward
+   * Struggling is part of learning
+
+3. **Evaluation Matters**
+   * You'll need to explain your solutions during evaluation
+   * Evaluators can ask "why" questions
+   * Copying without understanding will be obvious
+
+4. **Real-World Application**
+   * These are skills you'll actually use
+   * Understanding networks helps debug connection issues
+   * Essential for cloud computing, containers, VPNs, etc.
+
+### How to Really Learn
+
+✅ **Do This:**
+* Solve each level yourself
+* Understand WHY your solution works
+* Use calculators to verify, not to solve
+* Ask peers for explanations, not answers
+* Redo levels if you don't fully understand
+
+❌ **Don't Do This:**
+* Copy solutions without understanding
+* Skip to later levels without mastering basics
+* Memorize answers instead of learning concepts
+* Rush through just to finish
+
+## 📖 Study Resources
+
+### Recommended Learning Path
+
+1. **Start Here:**
+   * [Subnetting Made Easy (YouTube)](https://www.youtube.com/watch?v=s_Ntt6eTn94)
+   * [IP Addressing and Subnetting Tutorial](https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13788-3.html)
+
+2. **Practice:**
+   * Do NetPractice levels in order
+   * Take notes on each level
+   * Redo difficult levels
+
+3. **Deepen Understanding:**
+   * [Computer Networking Course (free)](https://www.coursera.org/learn/computer-networking)
+   * Read about TCP/IP stack
+   * Explore routing protocols
+
+### Books (Optional)
+
+* **TCP/IP Illustrated, Volume 1** by W. Richard Stevens
+* **Computer Networks** by Andrew S. Tanenbaum
+* **Network Warrior** by Gary A. Donahue
+
+## ✅ Verification Checklist
+
+Before submitting each level, check:
+
+- [ ] All IP addresses are unique
+- [ ] No network or broadcast addresses used as host IPs
+- [ ] Devices on same network have same network portion
+- [ ] Subnet masks are consistent within each network
+- [ ] Routes point to valid next hops
+- [ ] Default route configured where needed
+- [ ] All required fields are filled
+- [ ] Green checkmarks appear on all fields
+
+## 👤 Author
+
+**Israa Chaabi** – 42 Student | Software Engineering  
+ 42 Login: `ichaabi`
+
+## 💬 Final Advice
+
+> **"The only way to learn networking is to practice. Take your time, understand each concept, and don't skip ahead. Your future self will thank you for learning this properly."**
+
+Remember:
+* 🧠 **Understand, don't memorize**
+* 📝 **Practice makes perfect**
+* 🤝 **Ask for help when stuck (but not for answers)**
+* ⏰ **Take breaks if frustrated**
+* 🎯 **Focus on learning, not just passing**
+
+Good luck, and enjoy learning about networks! 🌐
+
+---
+
+----------------------------------------------------------
+
 Introduction au Réseau
 Net_Practice nous initie aux bases de la mise en réseau, en nous faisant configurer les réseaux simples et comprendre le fonctionnement du protocole TCP/IP.
 
